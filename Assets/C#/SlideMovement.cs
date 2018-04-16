@@ -6,13 +6,15 @@ public class SlideMovement : MonoBehaviour {
 
     public float speed;
     public float timeToDeath;
-    float timer;
+    public float timer;
+    float triggerTimer = 2;
 
+    public GameObject manager;
     bool right;
     bool left;
     bool forward;
     bool backward;
-    bool move;
+    public bool move;
     Vector3 direction;
     private void Start()
     {
@@ -91,9 +93,26 @@ public class SlideMovement : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag != "World")
+        if(collision.gameObject.tag == "World")
         {
             move = false;
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Goal"))
+        {
+            
+            triggerTimer -= Time.deltaTime;
+
+            if (triggerTimer <= 0f)
+                manager.GetComponent<PartyManager>().Win();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        triggerTimer = 2;
     }
 }
