@@ -22,7 +22,7 @@ public class SlideMovement : MonoBehaviour {
     }
 
     void Update () {
-
+        Debug.Log(transform.position);
         HandleInput();
         Move();
 
@@ -31,7 +31,7 @@ public class SlideMovement : MonoBehaviour {
             timer -= Time.deltaTime;
         }
 
-        transform.localScale =new Vector3(timer / timeToDeath, timer / timeToDeath, timer / timeToDeath);
+        //transform.localScale =new Vector3(timer / timeToDeath, timer / timeToDeath, timer / timeToDeath);
     }
 
     void HandleInput()
@@ -96,6 +96,7 @@ public class SlideMovement : MonoBehaviour {
         if(collision.gameObject.tag == "World")
         {
             move = false;
+            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
         }
     }
 
@@ -109,10 +110,22 @@ public class SlideMovement : MonoBehaviour {
             if (triggerTimer <= 0f)
                 manager.GetComponent<PartyManager>().Win();
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
         triggerTimer = 2;
+
+        if (other.CompareTag("Switch"))
+        {
+            Debug.Log("Hey");
+            right = false;
+            left = false;
+            forward = false;
+            backward = false;
+            direction = other.GetComponent<ChangeDirection>().newDirection;
+        }
     }
 }

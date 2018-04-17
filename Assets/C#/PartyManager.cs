@@ -12,8 +12,8 @@ public class PartyManager : MonoBehaviour {
     public Canvas winScreen;
 
     bool count = false;
-    float timerStart = 4;
-    float timer = 4;
+    float timerStart = 2;
+    float timer = 2;
 
 	void Start () {
         player.transform.position = startPos.position;
@@ -27,7 +27,7 @@ public class PartyManager : MonoBehaviour {
             timer -= Time.deltaTime;
         }
 
-		if (player.GetComponent<SlideMovement>().timer <= 0.01)
+		if (player.transform.localScale.x < 0.05f)
         {
             Lose();
         }
@@ -44,7 +44,7 @@ public class PartyManager : MonoBehaviour {
         {
             count = false;          
             player.transform.position = startPos.position;
-            player.GetComponent<SlideMovement>().timer = player.GetComponent<SlideMovement>().timeToDeath;
+            player.transform.localScale = new Vector3(1, 1, 1);
             loseScreen.gameObject.SetActive(false);
             timer = timerStart;
         }
