@@ -5,9 +5,12 @@ using UnityEngine;
 public class SlideMovement : MonoBehaviour {
 
     public float speed;
-    public float timeToDeath;
-    public float timer;
+    public float movement;
+    float damages = 1;
     float triggerTimer = 2;
+
+    public ParticleSystem trail;
+    public ParticleSystem kaboom;
 
     public GameObject manager;
     bool right;
@@ -16,22 +19,32 @@ public class SlideMovement : MonoBehaviour {
     bool backward;
     public bool move;
     Vector3 direction;
+
+    private void Awake()
+    {
+        movement = movement + 2;
+    }
+
     private void Start()
     {
-        timer = timeToDeath;      
+        damages = damages / movement;
     }
 
     void Update () {
-        Debug.Log(transform.position);
+        
         HandleInput();
         Move();
 
         if (move)
         {
-            timer -= Time.deltaTime;
+            trail.Play();
+        }
+        else
+        {
+            trail.Stop();
         }
 
-        //transform.localScale =new Vector3(timer / timeToDeath, timer / timeToDeath, timer / timeToDeath);
+        
     }
 
     void HandleInput()
@@ -96,7 +109,7 @@ public class SlideMovement : MonoBehaviour {
         if(collision.gameObject.tag == "World")
         {
             move = false;
-            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+            transform.localScale -= new Vector3(damages, damages, damages);
         }
     }
 
@@ -120,7 +133,6 @@ public class SlideMovement : MonoBehaviour {
 
         if (other.CompareTag("Switch"))
         {
-            Debug.Log("Hey");
             right = false;
             left = false;
             forward = false;
