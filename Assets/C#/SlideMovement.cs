@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class SlideMovement : MonoBehaviour {
 
+    [Header("Cube Stats")]
     public float speed;
     public float movement;
     float damages = 1;
     float triggerTimer = 2;
 
+    [Header("Particles")]
     public ParticleSystem trail;
     public ParticleSystem kaboom;
 
+    [Header("Game Manager")]
     public GameObject manager;
     bool right;
     bool left;
     bool forward;
     bool backward;
+
+    [HideInInspector]
     public bool move;
+
     Vector3 direction;
 
     private void Awake()

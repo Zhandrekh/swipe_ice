@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SceneSelection))]
 public class PartyManager : MonoBehaviour {
 
+    [Header("Level structs")]
     public GameObject player;
     public Transform startPos;
     public GameObject finish;
+    public int currentSceneIndex;
     
+    [Header("Screens")]
     public Canvas loseScreen;
     public Canvas winScreen;
-
+    
     bool count = false;
     float timerStart = 2;
     float timer = 2;
@@ -54,5 +58,11 @@ public class PartyManager : MonoBehaviour {
     public void Win()
     {
         winScreen.gameObject.SetActive(true);
+        count = true;
+
+        if (timer <= 0)
+        {
+            GetComponent<SceneSelection>().NextLevel(currentSceneIndex);
+        }
     }
 }
