@@ -7,6 +7,7 @@ public class SlideMovement : MonoBehaviour {
     [Header("Cube Stats")]
     public float speed;
     public float movement;
+    float _movement;
     float damages = 1;
     float triggerTimer = 2;
 
@@ -16,6 +17,7 @@ public class SlideMovement : MonoBehaviour {
 
     [Header("Game Manager")]
     public GameObject manager;
+
     bool right;
     bool left;
     bool forward;
@@ -28,15 +30,16 @@ public class SlideMovement : MonoBehaviour {
 
     private void Awake()
     {
-        movement = movement + 2;
+        _movement = movement + 2;
     }
 
     private void Start()
     {
-        damages = damages / movement;
+        damages = damages / _movement;
     }
 
     void Update () {
+
         
         HandleInput();
         Move();
@@ -49,8 +52,7 @@ public class SlideMovement : MonoBehaviour {
         {
             trail.Stop();
         }
-
-        
+  
     }
 
     void HandleInput()
@@ -115,7 +117,9 @@ public class SlideMovement : MonoBehaviour {
         if(collision.gameObject.tag == "World")
         {
             move = false;
+            kaboom.Play();
             transform.localScale -= new Vector3(damages, damages, damages);
+            manager.GetComponent<PartyManager>().CountTry();
         }
     }
 
@@ -128,9 +132,7 @@ public class SlideMovement : MonoBehaviour {
 
             if (triggerTimer <= 0f)
                 manager.GetComponent<PartyManager>().Win();
-        }
-
-        
+        }     
     }
 
     private void OnTriggerExit(Collider other)

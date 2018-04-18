@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneSelection : MonoBehaviour {
 
+    public string sceneName;
 
     public void NextLevel(int currentIndex)
     {
@@ -19,5 +20,10 @@ public class SceneSelection : MonoBehaviour {
     public void GoToXScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void GoToStringScene()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

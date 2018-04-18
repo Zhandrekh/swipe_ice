@@ -8,6 +8,10 @@ public class PartyManager : MonoBehaviour {
     [Header("Level structs")]
     public GameObject player;
     public Transform startPos;
+    public GameObject tryMarker;
+    public Transform trySlot;
+    public float slotSpacing;
+    List<GameObject> slots;
     public GameObject finish;
     public int currentSceneIndex;
     
@@ -21,9 +25,15 @@ public class PartyManager : MonoBehaviour {
 
 	void Start () {
         player.transform.position = startPos.position;
+        slots = new List<GameObject>();
+        for (int i = 0; i<player.GetComponent<SlideMovement>().movement; i++)
+        {
+            GameObject go = Instantiate(tryMarker);
+            go.transform.position = new Vector3(trySlot.position.x + slotSpacing * i, trySlot.position.y, trySlot.position.z);
+            slots.Add(go);
+        }
 	}
-	
-	// Update is called once per frame
+    
 	void Update () {
 
         if (count)
@@ -64,5 +74,14 @@ public class PartyManager : MonoBehaviour {
         {
             GetComponent<SceneSelection>().NextLevel(currentSceneIndex);
         }
+    }
+
+    public void CountTry()
+    {
+        int i = 1;
+        GameObject current = slots[slots.Count-i];
+        Destroy(current);
+        i+=1;
+        Debug.Log(i);
     }
 }
