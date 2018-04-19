@@ -6,6 +6,8 @@ public class SlideMovement : MonoBehaviour {
 
     [Header("Cube Stats")]
     public float speed;
+    public AnimationCurve acceleration;
+    float activeTime;
     public float movement;
     float _movement;
     float damages = 1;
@@ -43,16 +45,7 @@ public class SlideMovement : MonoBehaviour {
         
         HandleInput();
         Move();
-
-        if (move)
-        {
-            trail.Play();
-        }
-        else
-        {
-            trail.Stop();
-        }
-  
+        
     }
 
     void HandleInput()
@@ -64,6 +57,7 @@ public class SlideMovement : MonoBehaviour {
             forward = false;
             backward = false;
             move = true;
+            activeTime = Time.time;
         }
 
         if (Input.GetAxis("Horizontal") < 0 && !move)
@@ -73,6 +67,7 @@ public class SlideMovement : MonoBehaviour {
             forward = false;
             backward = false;
             move = true;
+            activeTime = Time.time;
         }
 
         if (Input.GetAxis("Vertical") > 0 && !move)
@@ -82,6 +77,7 @@ public class SlideMovement : MonoBehaviour {
             forward = true;
             backward = false;
             move = true;
+            activeTime = Time.time;
         }
 
         if (Input.GetAxis("Vertical") < 0 && !move)
@@ -91,6 +87,7 @@ public class SlideMovement : MonoBehaviour {
             forward = false;
             backward = true;
             move = true;
+            activeTime = Time.time;
         }
     }
 
@@ -108,8 +105,10 @@ public class SlideMovement : MonoBehaviour {
         if (backward)
             direction = Vector3.back;
 
+        
+
         if (move)
-            transform.Translate(direction * Time.deltaTime *speed, Space.World);
+            transform.Translate(direction * Time.deltaTime * speed * acceleration.Evaluate(Time.time - activeTime), Space.World);
     }
 
     private void OnCollisionEnter(Collision collision)
