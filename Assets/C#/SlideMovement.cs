@@ -114,10 +114,10 @@ public class SlideMovement : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "World")
+        move = false;
+        kaboom.Play();
+        if (collision.gameObject.tag == "World")
         {
-            move = false;
-            kaboom.Play();
             transform.localScale -= new Vector3(damages, damages, damages);
             manager.GetComponent<PartyManager>().CountTry();
         }

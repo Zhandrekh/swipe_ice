@@ -11,7 +11,7 @@ public class PartyManager : MonoBehaviour {
     public GameObject tryMarker;
     public Transform trySlot;
     public float slotSpacing;
-    List<GameObject> slots;
+    public List<GameObject> slots;
     public GameObject finish;
     public int currentSceneIndex;
     
@@ -24,14 +24,7 @@ public class PartyManager : MonoBehaviour {
     float timer = 2;
 
 	void Start () {
-        player.transform.position = startPos.position;
-        slots = new List<GameObject>();
-        for (int i = 0; i<player.GetComponent<SlideMovement>().movement; i++)
-        {
-            GameObject go = Instantiate(tryMarker);
-            go.transform.position = new Vector3(trySlot.position.x + slotSpacing * i, trySlot.position.y, trySlot.position.z);
-            slots.Add(go);
-        }
+        InitGame();
 	}
     
 	void Update () {
@@ -41,9 +34,14 @@ public class PartyManager : MonoBehaviour {
             timer -= Time.deltaTime;
         }
 
-		if (player.transform.localScale.x < 0.05f)
+		if (slots.Count == 0)
         {
             Lose();
+        }
+
+        if (Input.GetButton("Reset"))
+        {
+            InitGame();
         }
 	}
 
@@ -56,11 +54,7 @@ public class PartyManager : MonoBehaviour {
         loseScreen.gameObject.SetActive(true);
         if(timer <= 0)
         {
-            count = false;          
-            player.transform.position = startPos.position;
-            player.transform.localScale = new Vector3(1, 1, 1);
-            loseScreen.gameObject.SetActive(false);
-            timer = timerStart;
+            InitGame();   
         }
         
     }
@@ -76,12 +70,40 @@ public class PartyManager : MonoBehaviour {
         }
     }
 
+    void InitGame()
+    {
+        count = false;
+        player.transform.position = startPos.position;
+        player.transform.localScale = new Vector3(1, 1, 1);
+        loseScreen.gameObject.SetActive(false);
+        timer = timerStart;
+        
+        if (slots.Count != 0)
+        {
+            int listCount = slots.Count;
+            for (int i = 0; i < listCount; i++)
+            {
+                GameObject current = slots[0];
+                slots.Remove(current);
+                Destroy(current);
+            }
+        }       
+        
+        slots = new List<GameObject>();
+        for (int i = 0; i < player.GetComponent<SlideMovement>().movement; i++)
+        {
+            GameObject go = Instantiate(tryMarker);
+            go.transform.position = new Vector3(trySlot.position.x + slotSpacing * i, trySlot.position.y, trySlot.position.z);
+            slots.Add(go);
+
+        }
+    }
+
     public void CountTry()
     {
-        int i = 1;
-        GameObject current = slots[slots.Count-i];
+        
+        GameObject current = slots[slots.Count-1];
+        slots.Remove(current);
         Destroy(current);
-        i+=1;
-        Debug.Log(i);
     }
 }
