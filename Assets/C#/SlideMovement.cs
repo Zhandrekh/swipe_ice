@@ -13,6 +13,9 @@ public class SlideMovement : MonoBehaviour {
     float damages = 1;
     float triggerTimer = 2;
 
+    [Header("Raycast Mask")]
+    public LayerMask layerMask = -1;
+
     [Header("Particles")]
     public ParticleSystem trail;
     public ParticleSystem kaboom;
@@ -47,47 +50,60 @@ public class SlideMovement : MonoBehaviour {
         Move();
         
     }
-
+    
     void HandleInput()
     {
         if (Input.GetAxis("Horizontal") > 0 && !move)
         {
-            right = true;
-            left = false;
-            forward = false;
-            backward = false;
-            move = true;
-            activeTime = Time.time;
+            
+            if (!(Physics.Raycast(transform.position, transform.right, 0.75F, layerMask)) )
+            {
+                right = true;
+                left = false;
+                forward = false;
+                backward = false;
+                move = true;
+                activeTime = Time.time;
+            }
         }
 
         if (Input.GetAxis("Horizontal") < 0 && !move)
         {
-            right = false;
-            left = true;
-            forward = false;
-            backward = false;
-            move = true;
-            activeTime = Time.time;
+            if (!(Physics.Raycast(transform.position, -transform.right, 0.75F, layerMask)))
+            {
+                right = false;
+                left = true;
+                forward = false;
+                backward = false;
+                move = true;
+                activeTime = Time.time;
+            }            
         }
 
         if (Input.GetAxis("Vertical") > 0 && !move)
         {
-            right = false;
-            left = false;
-            forward = true;
-            backward = false;
-            move = true;
-            activeTime = Time.time;
+            if (!(Physics.Raycast(transform.position, transform.forward, 0.75F, layerMask)))
+            {
+                right = false;
+                left = false;
+                forward = true;
+                backward = false;
+                move = true;
+                activeTime = Time.time;
+            }            
         }
 
         if (Input.GetAxis("Vertical") < 0 && !move)
         {
-            right = false;
-            left = false;
-            forward = false;
-            backward = true;
-            move = true;
-            activeTime = Time.time;
+            if (!(Physics.Raycast(transform.position, -transform.forward, 0.75F, layerMask)))
+            {
+                right = false;
+                left = false;
+                forward = false;
+                backward = true;
+                move = true;
+                activeTime = Time.time;
+            }               
         }
     }
 
@@ -104,8 +120,6 @@ public class SlideMovement : MonoBehaviour {
 
         if (backward)
             direction = Vector3.back;
-
-        
 
         if (move)
             transform.Translate(direction * Time.deltaTime * speed * acceleration.Evaluate(Time.time - activeTime), Space.World);

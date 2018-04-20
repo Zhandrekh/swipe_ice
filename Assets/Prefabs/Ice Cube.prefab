@@ -570,8 +570,14 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.83061296
+      value: 0.6191168
+      inSlope: 0.7070601
+      outSlope: 0.7070601
       tangentMode: 0
     - serializedVersion: 2
       time: 2
@@ -583,6 +589,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   movement: 8
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
   trail: {fileID: 198470558334136004}
   kaboom: {fileID: 198604654501623020}
   manager: {fileID: 0}
