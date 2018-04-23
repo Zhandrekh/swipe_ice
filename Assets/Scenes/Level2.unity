@@ -12125,12 +12125,12 @@ Prefab:
     - target: {fileID: 114558332813799890, guid: e9e697c0e0a168c4f8530325618d0906,
         type: 2}
       propertyPath: slotSpacing
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114558332813799890, guid: e9e697c0e0a168c4f8530325618d0906,
         type: 2}
       propertyPath: currentSceneIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9e697c0e0a168c4f8530325618d0906, type: 2}

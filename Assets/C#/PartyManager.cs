@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(SceneSelection))]
 public class PartyManager : MonoBehaviour {
 
     [Header("Level structs")]
-    public GameObject mainCamera;
+    public Transform playerTargetCam;
     public GameObject player;
     public Transform startPos;
     public GameObject tryMarker;
@@ -19,6 +20,7 @@ public class PartyManager : MonoBehaviour {
     [Header("Screens")]
     public Canvas loseScreen;
     public Canvas winScreen;
+
     
     bool count = false;
     float timerStart = 2;
@@ -65,6 +67,10 @@ public class PartyManager : MonoBehaviour {
         winScreen.gameObject.SetActive(true);
         count = true;
 
+        Camera.main.GetComponent<CameraRotation>().wining = true;
+        Camera.main.transform.DOMove(playerTargetCam.position, 2f, true).SetEase(Ease.InOutQuint);      
+        //Camera.main.transform.LookAt(player.transform.position); 
+
         if (timer <= 0)
         {
             GetComponent<SceneSelection>().NextLevel(currentSceneIndex);
@@ -100,7 +106,7 @@ public class PartyManager : MonoBehaviour {
 
         }
 
-        mainCamera.transform.rotation = mainCamera.GetComponent<CameraRotation>().startRot.rotation;
+        Camera.main.transform.rotation = Camera.main.GetComponent<CameraRotation>().startRot;
     }
 
     public void CountTry()

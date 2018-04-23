@@ -8,7 +8,7 @@ public class CameraRotation : MonoBehaviour {
     
     SlideMovement playerMovement;
     [HideInInspector]
-    public Transform startRot;
+    public Quaternion startRot;
 
     public float speed;
 
@@ -18,9 +18,12 @@ public class CameraRotation : MonoBehaviour {
     public Transform frontRot;
     public Transform backRot;
 
+    [HideInInspector]
+    public bool wining = false;
+        
     private void Awake()
     {
-        startRot = transform;
+        startRot = transform.rotation;
     }
     private void Start()
     {
@@ -30,24 +33,30 @@ public class CameraRotation : MonoBehaviour {
 
     void Update ()
     {
+        
+        if (!playerMovement.move && !wining)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, startRot, Time.deltaTime * speed);
+        }
+
 		if(playerMovement.move && playerMovement.right)
         {
-            transform.rotation = Quaternion.Lerp(startRot.rotation, leftRot.rotation, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, leftRot.rotation, Time.deltaTime * speed);
         }
 
         if (playerMovement.move && playerMovement.left)
         {
-            transform.rotation = Quaternion.Lerp(startRot.rotation, rightRot.rotation, Time.deltaTime *speed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rightRot.rotation, Time.deltaTime *speed);
         }
 
         if (playerMovement.move && playerMovement.forward)
         {
-            transform.rotation = Quaternion.Lerp(startRot.rotation, frontRot.rotation, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, frontRot.rotation, Time.deltaTime * speed);
         }
 
         if (playerMovement.move && playerMovement.backward)
         {
-            transform.rotation = Quaternion.Lerp(startRot.rotation, backRot.rotation, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, backRot.rotation, Time.deltaTime * speed);
         }
     }
 }

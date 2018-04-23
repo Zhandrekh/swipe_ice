@@ -11,6 +11,6 @@ public class DioramaRotation : MonoBehaviour {
 	void Update ()
     {
         _speed += Time.deltaTime * speed;
-        transform.rotation =  Quaternion.AngleAxis(_speed,axis);
+        transform.rotation = Quaternion.AngleAxis(_speed + transform.position.x * 30, axis);
 	}
 }

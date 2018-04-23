@@ -73,7 +73,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DetailTint: 0.25
-    - _Distortion: 0.24
+    - _Distortion: 0.009
     - _DstBlend: 0
     - _FresnelFactor: 1.4
     - _GlossMapScale: 1
