@@ -6,6 +6,7 @@ using UnityEngine;
 public class PartyManager : MonoBehaviour {
 
     [Header("Level structs")]
+    public GameObject mainCamera;
     public GameObject player;
     public Transform startPos;
     public GameObject tryMarker;
@@ -39,7 +40,7 @@ public class PartyManager : MonoBehaviour {
             Lose();
         }
 
-        if (Input.GetButton("Reset"))
+        if (Input.GetButtonDown("Reset"))
         {
             InitGame();
         }
@@ -77,6 +78,7 @@ public class PartyManager : MonoBehaviour {
         player.transform.localScale = new Vector3(1, 1, 1);
         loseScreen.gameObject.SetActive(false);
         timer = timerStart;
+
         
         if (slots.Count != 0)
         {
@@ -97,6 +99,8 @@ public class PartyManager : MonoBehaviour {
             slots.Add(go);
 
         }
+
+        mainCamera.transform.rotation = mainCamera.GetComponent<CameraRotation>().startRot.rotation;
     }
 
     public void CountTry()

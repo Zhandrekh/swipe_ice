@@ -23,11 +23,14 @@ public class SlideMovement : MonoBehaviour {
     [Header("Game Manager")]
     public GameObject manager;
 
-    bool right;
-    bool left;
-    bool forward;
-    bool backward;
-
+    [HideInInspector]
+    public bool right;
+    [HideInInspector]
+    public bool left;
+    [HideInInspector]
+    public bool forward;
+    [HideInInspector]
+    public bool backward;
     [HideInInspector]
     public bool move;
 
