@@ -34,6 +34,7 @@ public class SlideMovement : MonoBehaviour {
     [HideInInspector]
     public bool move;
 
+    bool won;
     Vector3 direction;
 
     private void Awake()
@@ -112,6 +113,7 @@ public class SlideMovement : MonoBehaviour {
 
     void Move()
     {
+        
         if (right)
             direction = Vector3.right;
 
@@ -125,13 +127,18 @@ public class SlideMovement : MonoBehaviour {
             direction = Vector3.back;
 
         if (move)
+        {
+            manager.GetComponent<PartyManager>().SlideSound();
             transform.Translate(direction * Time.deltaTime * speed * acceleration.Evaluate(Time.time - activeTime), Space.World);
+        }
+            
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         move = false;
         kaboom.Play();
+        manager.GetComponent<PartyManager>().StopSlideSound();
         if (collision.gameObject.tag == "World")
         {
             transform.localScale -= new Vector3(damages, damages, damages);
@@ -146,8 +153,12 @@ public class SlideMovement : MonoBehaviour {
             
             triggerTimer -= Time.deltaTime;
 
-            if (triggerTimer <= 0f)
+            if (triggerTimer <= 0f && !won)
+            {
                 manager.GetComponent<PartyManager>().Win();
+                won = true;
+            }
+                
         }     
     }
 

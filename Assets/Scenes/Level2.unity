@@ -5550,6 +5550,11 @@ Transform:
   m_Father: {fileID: 242751476}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &696467919 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1755495877434506, guid: 828d69ca3c41e2b44a916ea12b9a0185,
+    type: 2}
+  m_PrefabInternal: {fileID: 1446827871}
 --- !u!223 &716260362 stripped
 Canvas:
   m_PrefabParentObject: {fileID: 223107860720986422, guid: 75858b8be58b1184c9e2535adc633e94,
@@ -5655,8 +5660,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 735156555}
   m_LocalRotation: {x: -0.005006242, y: 0.77854115, z: -0.62753284, w: -0.0071524363}
-  m_LocalPosition: {x: 0.6, y: -21.6, z: 8.3}
-  m_LocalScale: {x: 20, y: 10, z: 10}
+  m_LocalPosition: {x: 0.6, y: -20, z: 8.6}
+  m_LocalScale: {x: 20, y: 10, z: 15}
   m_Children: []
   m_Father: {fileID: 1019224570}
   m_RootOrder: 1
@@ -10421,6 +10426,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19150ee30d7d90c48b8f7a44aea02cb2, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1458144615 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4927372055478724, guid: 19150ee30d7d90c48b8f7a44aea02cb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1458144614}
 --- !u!1 &1480069444
 GameObject:
   m_ObjectHideFlags: 0
@@ -12130,8 +12140,18 @@ Prefab:
     - target: {fileID: 114558332813799890, guid: e9e697c0e0a168c4f8530325618d0906,
         type: 2}
       propertyPath: currentSceneIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114558332813799890, guid: e9e697c0e0a168c4f8530325618d0906,
+        type: 2}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 696467919}
+    - target: {fileID: 114558332813799890, guid: e9e697c0e0a168c4f8530325618d0906,
+        type: 2}
+      propertyPath: playerTargetCam
+      value: 
+      objectReference: {fileID: 1458144615}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9e697c0e0a168c4f8530325618d0906, type: 2}
   m_IsPrefabParent: 0
