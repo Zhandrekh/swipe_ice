@@ -8,13 +8,13 @@ using DG.Tweening;
 public class PartyManager : MonoBehaviour {
 
     [Header("Level structs")]
-    public GameObject cam;
     public Transform playerTargetCam;
     public GameObject player;
     public Transform startPos;
     public GameObject tryMarker;
     public Transform trySlot;
     public float slotSpacing;
+    [HideInInspector]
     public List<GameObject> slots;
     public GameObject finish;
     public int currentSceneIndex;
@@ -82,20 +82,16 @@ public class PartyManager : MonoBehaviour {
         count = true;
         audioSource.PlayOneShot(winSound,0.75f);
 
-        cam.GetComponent<CameraRotation>().wining = true;       
-        cam.transform.DOMove(playerTargetCam.position, 1f).SetEase(Ease.InQuart);      
+        Camera.main.GetComponent<CameraRotation>().wining = true;       
+        Camera.main.transform.DOMove(playerTargetCam.position, 1f).SetEase(Ease.InQuart);      
         Camera.main.transform.LookAt(player.transform.position); 
 
-        /*if (timer <= 0)
-        {
-            Debug.Log("change scene");
-            GetComponent<SceneSelection>().NextLevel(currentSceneIndex);
-        }*/
     }
 
     void InitGame()
     {
         count = false;
+        player.GetComponent<SlideMovement>().animStart = true;
         player.transform.position = startPos.position;
         player.transform.localScale = new Vector3(1, 1, 1);
         loseScreen.gameObject.SetActive(false);
@@ -127,8 +123,9 @@ public class PartyManager : MonoBehaviour {
 
     public void CountTry()
     {
-        audioSource.PlayOneShot(impactSound,0.75f);
+        audioSource.PlayOneShot(impactSound,0.5f);
         GameObject current = slots[slots.Count-1];
+        player.GetComponent<SlideMovement>().animeFloat = slots.Count -1;
         slots.Remove(current);
         Destroy(current);
     }

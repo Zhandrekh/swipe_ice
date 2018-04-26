@@ -13,6 +13,16 @@ public class SlideMovement : MonoBehaviour {
     float damages = 1;
     float triggerTimer = 2;
 
+    [Header("Face Anim")]
+    public GameObject normalAnim;
+    public GameObject woryAnim;
+    public GameObject scaredAnim;
+    public GameObject happyAnim;
+    [HideInInspector]
+    public float animeFloat;
+    [HideInInspector]
+    public bool animStart;
+
     [Header("Raycast Mask")]
     public LayerMask layerMask = -1;
 
@@ -40,11 +50,16 @@ public class SlideMovement : MonoBehaviour {
     private void Awake()
     {
         _movement = movement + 2;
+        animeFloat = _movement;
     }
 
     private void Start()
     {
         damages = damages / _movement;
+        animStart = true;
+        woryAnim.SetActive(false);
+        scaredAnim.SetActive(false);
+        happyAnim.SetActive(false);
     }
 
     void Update () {
@@ -52,6 +67,25 @@ public class SlideMovement : MonoBehaviour {
         
         HandleInput();
         Move();
+
+        if (animStart)
+        {
+            normalAnim.SetActive(true);
+            woryAnim.SetActive(false);
+            scaredAnim.SetActive(false);
+            animStart = false;
+        }
+
+        if (animeFloat <= 4 && animeFloat >2)
+        {
+            normalAnim.SetActive(false);
+            woryAnim.SetActive(true);
+        }
+        else if (animeFloat <= 1)
+        {
+            woryAnim.SetActive(false);
+            scaredAnim.SetActive(true);
+        }
         
     }
     
@@ -142,6 +176,7 @@ public class SlideMovement : MonoBehaviour {
         if (collision.gameObject.tag == "World")
         {
             transform.localScale -= new Vector3(damages, damages, damages);
+            
             manager.GetComponent<PartyManager>().CountTry();
         }
     }
