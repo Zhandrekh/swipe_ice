@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SlideMovement : MonoBehaviour {
 
@@ -70,18 +71,19 @@ public class SlideMovement : MonoBehaviour {
 
         if (animStart)
         {
+            animeFloat = _movement;
             normalAnim.SetActive(true);
             woryAnim.SetActive(false);
             scaredAnim.SetActive(false);
             animStart = false;
         }
 
-        if (animeFloat <= 4 && animeFloat >2)
+        if (animeFloat <= 4 && animeFloat >2 && !won)
         {
             normalAnim.SetActive(false);
             woryAnim.SetActive(true);
         }
-        else if (animeFloat <= 1)
+        else if (animeFloat <= 1 && !won)
         {
             woryAnim.SetActive(false);
             scaredAnim.SetActive(true);
@@ -103,6 +105,11 @@ public class SlideMovement : MonoBehaviour {
                 move = true;
                 activeTime = Time.time;
             }
+            else
+            {
+                //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
+                Camera.main.transform.DOShakePosition(0.5f, 0.5f, 1,0);
+            }
         }
 
         if (Input.GetAxis("Horizontal") < 0 && !move)
@@ -115,7 +122,12 @@ public class SlideMovement : MonoBehaviour {
                 backward = false;
                 move = true;
                 activeTime = Time.time;
-            }            
+            }
+            else
+            {
+                //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
+                Camera.main.transform.DOShakePosition(0.5f, 0.5f, 1, 0);
+            }
         }
 
         if (Input.GetAxis("Vertical") > 0 && !move)
@@ -128,7 +140,12 @@ public class SlideMovement : MonoBehaviour {
                 backward = false;
                 move = true;
                 activeTime = Time.time;
-            }            
+            }
+            else
+            {
+                //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
+                Camera.main.transform.DOShakePosition(0.5f, 0.5f, 1, 0);
+            }
         }
 
         if (Input.GetAxis("Vertical") < 0 && !move)
@@ -141,7 +158,12 @@ public class SlideMovement : MonoBehaviour {
                 backward = true;
                 move = true;
                 activeTime = Time.time;
-            }               
+            }
+            else
+            {
+                //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
+                Camera.main.transform.DOShakePosition(0.25f, 0.25f, 1, 0);
+            }
         }
     }
 
@@ -190,6 +212,10 @@ public class SlideMovement : MonoBehaviour {
 
             if (triggerTimer <= 0f && !won)
             {
+                normalAnim.SetActive(false);
+                woryAnim.SetActive(false);
+                scaredAnim.SetActive(false);
+                happyAnim.SetActive(true);
                 manager.GetComponent<PartyManager>().Win();
                 won = true;
             }
