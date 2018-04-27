@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4437872, g: 0.4931394, b: 0.5726631, a: 1}
+  m_IndirectSpecularColor: {r: 0.4437877, g: 0.49314034, b: 0.5726635, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7557,6 +7557,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114601072040618642, guid: 5877a041b368c4443a08ddb065190d9c,
+        type: 2}
+      propertyPath: sceneName
+      value: Level3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5877a041b368c4443a08ddb065190d9c, type: 2}
   m_IsPrefabParent: 0
@@ -7834,7 +7839,7 @@ Transform:
   - {fileID: 463531934}
   - {fileID: 909842730}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027083483
 GameObject:

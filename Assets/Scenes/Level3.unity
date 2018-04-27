@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4437872, g: 0.4931394, b: 0.5726631, a: 1}
+  m_IndirectSpecularColor: {r: 0.4437877, g: 0.49314034, b: 0.5726635, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6735,6 +6735,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114601072040618642, guid: 5877a041b368c4443a08ddb065190d9c,
+        type: 2}
+      propertyPath: sceneName
+      value: Level4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5877a041b368c4443a08ddb065190d9c, type: 2}
   m_IsPrefabParent: 0
@@ -10317,6 +10322,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19150ee30d7d90c48b8f7a44aea02cb2, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1458144615 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4927372055478724, guid: 19150ee30d7d90c48b8f7a44aea02cb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1458144614}
 --- !u!1 &1464369594
 GameObject:
   m_ObjectHideFlags: 0
@@ -12434,6 +12444,11 @@ Prefab:
       propertyPath: currentSceneIndex
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114558332813799890, guid: e9e697c0e0a168c4f8530325618d0906,
+        type: 2}
+      propertyPath: playerTargetCam
+      value: 
+      objectReference: {fileID: 1458144615}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9e697c0e0a168c4f8530325618d0906, type: 2}
   m_IsPrefabParent: 0
