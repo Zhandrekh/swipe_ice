@@ -108,7 +108,7 @@ public class SlideMovement : MonoBehaviour {
             else
             {
                 //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
-                Camera.main.transform.DOShakePosition(0.5f, 0.5f, 1,0);
+                Camera.main.transform.DOShakePosition(0.25f, 0.25f, 1, 0);
             }
         }
 
@@ -126,7 +126,7 @@ public class SlideMovement : MonoBehaviour {
             else
             {
                 //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
-                Camera.main.transform.DOShakePosition(0.5f, 0.5f, 1, 0);
+                Camera.main.transform.DOShakePosition(0.25f, 0.25f, 1, 0);
             }
         }
 
@@ -144,7 +144,7 @@ public class SlideMovement : MonoBehaviour {
             else
             {
                 //Camera.main.transform.DOShakeRotation(0.5f, 2, 2, 2);
-                Camera.main.transform.DOShakePosition(0.5f, 0.5f, 1, 0);
+                Camera.main.transform.DOShakePosition(0.25f, 0.25f, 1, 0);
             }
         }
 
