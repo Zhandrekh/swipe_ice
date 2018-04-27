@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/sc\xE8ne/Menu_SI.unity"
+    path: Assets/Scenes/Menu_SI.unity
     guid: 2c1cd993824cd914eaeca4813f8f5a83
   - enabled: 1
     path: Assets/Scenes/Level1.unity
@@ -23,3 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level5.unity
     guid: e3c13584bc1039f48bccea7c8d5ff8c5
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: 56c35fdf3fcb0ae458ef1f4a5b5726ea
+  - enabled: 1
+    path: Assets/Scenes/Level7.unity
+    guid: ee6aeae47e0883a45b5b20a914672c1d
+  - enabled: 1
+    path: Assets/Scenes/Level8.unity
+    guid: 8c0fbaa91df6bed4793b9f6253d1cb80
+  - enabled: 1
+    path: Assets/Scenes/Level9.unity
+    guid: cbd4b4df4d30f63449c425e8088cc8a5
+  - enabled: 1
+    path: Assets/Scenes/choix menu.unity
+    guid: d20e27750f9405f4db19639700fb1a5b
