@@ -7,6 +7,7 @@ TagManager:
   - World
   - Goal
   - Switch
+  - music
   layers:
   - Default
   - TransparentFX
